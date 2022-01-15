@@ -28,5 +28,6 @@
   },
   "engines": {
     "node": "14.x"
-  }
+  },
+  "type": "module"
 }
