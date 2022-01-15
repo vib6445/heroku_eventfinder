@@ -12,6 +12,7 @@ var userRoute = function () {
     // router.get('/validateToken', extractJWT, validateToken);
     // router.get('/users/:id', getUserById);
     router.post('/register', user_controller_1.register);
+    router.post('/getSavedEvents', user_controller_1.getSavedEvents);
     router.post('/login', user_controller_1.login);
     router.post('/saveEvent', user_controller_1.saveEvent);
     router.post('/getUserById', user_controller_1.getUserById);

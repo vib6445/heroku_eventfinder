@@ -148,7 +148,16 @@ const recommendEvent = (req: Request, res: Response) => {
     }
   })
 }
-
+const getSavedEvents = (req, res, next) => {
+  const {userId} = req.body;
+  User.findById(userId).exec((err, user) => {
+    if (err) {
+      res.status(400).json({});
+    } else if (user) {
+      res.json(user);
+    }
+  })
+};
 const saveEvent = (req: Request, res: Response) => {
   const { eventId, userId } = req.body;
   User.findById(userId).exec((err, user) => {
@@ -181,4 +190,4 @@ const saveEvent = (req: Request, res: Response) => {
   });
 
 };
-export { register, login, saveEvent, getUserById, getUsers, recommendEvent };
+export { register, login, saveEvent, getUserById, getUsers, recommendEvent, getSavedEvents };
