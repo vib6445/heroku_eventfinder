@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+
 import { connectToDatabase } from './database/database-connection';
 import { userRoute } from './routes/user.route';
 //jsonwebtoken
