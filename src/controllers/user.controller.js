@@ -104,8 +104,8 @@ const saveEvent = (req, res, next) => {
 };
 const getSavedEvents = (req, res, next) => {
     console.log("Request");
-    const { email } = req.body;
-    User.find({ email }) // Find user in db
+    const { userId } = req.body;
+    User.find({ userId }) // Find user in db
         .exec()
         .then((myEvents) => {
             console.log("Heyhey: "+ myEvents);
