@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSavedEvents = exports.recommendEvent = exports.getUsers = exports.getUserById = exports.saveEvent = exports.login = exports.register = void 0;
+exports.recommendEvent = exports.getUsers = exports.getUserById = exports.saveEvent = exports.login = exports.register = void 0;
 var bcryptjs_1 = __importDefault(require("bcryptjs"));
 var user_model_1 = require("../model/user.model");
 var signJWT_1 = __importDefault(require("../functions/signJWT"));
@@ -153,18 +153,6 @@ var recommendEvent = function (req, res) {
     });
 };
 exports.recommendEvent = recommendEvent;
-var getSavedEvents = function (req, res, next) {
-    var userId = req.body.userId;
-    user_model_1.User.findById(userId).exec(function (err, user) {
-        if (err) {
-            res.status(400).json({});
-        }
-        else if (user) {
-            res.json(user);
-        }
-    });
-};
-exports.getSavedEvents = getSavedEvents;
 var saveEvent = function (req, res) {
     var _a = req.body, eventId = _a.eventId, userId = _a.userId;
     user_model_1.User.findById(userId).exec(function (err, user) {
