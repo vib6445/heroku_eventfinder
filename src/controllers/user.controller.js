@@ -102,4 +102,14 @@ const saveEvent = (req, res, next) => {
         res.json(user);
     });
 };
-export { register, login, saveEvent };
+const getSavedEvents = (req, res, next) => {
+    console.log("Request");
+    const { email } = req.body;
+    User.find({ email }) // Find user in db
+        .exec()
+        .then((myEvents) => {
+            console.log("Heyhey: "+ myEvents);
+            return myEvents;
+        });
+};
+export { register, login, saveEvent, getSavedEvents };
