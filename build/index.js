@@ -43,8 +43,6 @@ var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var database_connection_1 = require("./database/database-connection");
 var user_route_1 = require("./routes/user.route");
-require('ts-node/register');
-require('./server.ts');
 //jsonwebtoken
 var allowedOrigins = ['http://localhost:4214', 'https://interactionprototyping.github.io'];
 var corsOptions = {
