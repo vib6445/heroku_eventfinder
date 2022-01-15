@@ -27,3 +27,9 @@ Damit die Server-Verbindung nicht in Klartext übertragen wird
 
 ## To kill node servers in the background
 sudo killall node
+
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+    }
+  }

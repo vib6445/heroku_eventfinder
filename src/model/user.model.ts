@@ -1,5 +1,6 @@
 import mongoose, { Schema, Model, Document } from 'mongoose';
 
+
 type UserDocument = Document & {
   username: string;
   email: string;

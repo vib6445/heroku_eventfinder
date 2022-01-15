@@ -34,7 +34,7 @@ const register = (req: Request, res: Response) => {
       };
   
       const userInput2 = new User(userInput);
-      userInput2.save(function (err, user) {
+      userInput2.save(function (err: any, user: any) {
         if (err) {
           // console.log(err);
           return res.status(409).json({
@@ -58,7 +58,7 @@ const register = (req: Request, res: Response) => {
   
     User.find({ email }) // Find user in db
       .exec()
-      .then((users) => {
+      .then((users: string | any[]) => {
         if (users.length !== 1) {
           // If for some reason more than one accounts with this username exist return error
           return res.status(401).json({
@@ -105,7 +105,7 @@ const register = (req: Request, res: Response) => {
         $push: {
             myEvents: [eventId]
         }
-    }).exec(function(error, user) {
+    }).exec(function(error: any, user: any) {
         res.json(user);
     });
   };

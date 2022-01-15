@@ -1,9 +1,15 @@
-import bcryptjs from 'bcryptjs';
-import { User } from '../model/user.model';
-import signJWT from '../functions/signJWT';
-const register = (req, res) => {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.saveEvent = exports.login = exports.register = void 0;
+var bcryptjs_1 = __importDefault(require("bcryptjs"));
+var user_model_1 = require("../model/user.model");
+var signJWT_1 = __importDefault(require("../functions/signJWT"));
+var register = function (req, res) {
     // Get user info from body
-    const { username, email, password, useLocation } = req.body;
+    var _a = req.body, username = _a.username, email = _a.email, password = _a.password, useLocation = _a.useLocation;
     if (!email || !username || !password) {
         // Return error if not all infos are provided
         return res.status(422).json({ message: 'The fields email, username and password are required' });
@@ -11,7 +17,7 @@ const register = (req, res) => {
     else if (password.length < 8) {
         return res.status(422).json({ message: 'Password must be at least 8 digits long' });
     }
-    bcryptjs.hash(password, 10, (hashError, hash) => {
+    bcryptjs_1.default.hash(password, 10, function (hashError, hash) {
         // Hash the password to not store it in plain text in db
         if (hashError) {
             return res.status(500).json({
@@ -19,16 +25,16 @@ const register = (req, res) => {
                 error: hashError
             });
         }
-        const userInput = {
+        var userInput = {
             // Mongoose Create User Instance
-            username,
-            email,
+            username: username,
+            email: email,
             password: hash,
-            useLocation,
+            useLocation: useLocation,
             myEvents: [],
             suggestedEvents: []
         };
-        const userInput2 = new User(userInput);
+        var userInput2 = new user_model_1.User(userInput);
         userInput2.save(function (err, user) {
             if (err) {
                 // console.log(err);
@@ -41,23 +47,24 @@ const register = (req, res) => {
         });
     });
 };
-const login = (req, res, next) => {
-    const { email, password } = req.body; // Get credentials from body
+exports.register = register;
+var login = function (req, res, next) {
+    var _a = req.body, email = _a.email, password = _a.password; // Get credentials from body
     /*if (password === GOOGLE_PASSWORD) { // Prevent sneaky people from logging in by using the normal Login form to perform Google logins
       return res.status(401).json({
         message: 'Unauthorized!'
       });
     }*/
-    User.find({ email }) // Find user in db
+    user_model_1.User.find({ email: email }) // Find user in db
         .exec()
-        .then((users) => {
+        .then(function (users) {
         if (users.length !== 1) {
             // If for some reason more than one accounts with this username exist return error
             return res.status(401).json({
                 message: 'Unauthorized'
             });
         }
-        bcryptjs.compare(password, users[0].password, (error, result) => {
+        bcryptjs_1.default.compare(password, users[0].password, function (error, result) {
             // Compare pws
             if (error) {
                 return res.status(401).json({
@@ -65,7 +72,7 @@ const login = (req, res, next) => {
                 });
             }
             else if (result) {
-                signJWT(users[0], (_error, token) => {
+                (0, signJWT_1.default)(users[0], function (_error, token) {
                     // Create JWT Token for user
                     if (_error) {
                         return res.status(401).json({
@@ -91,10 +98,11 @@ const login = (req, res, next) => {
         });
     });
 };
-const saveEvent = (req, res, next) => {
+exports.login = login;
+var saveEvent = function (req, res, next) {
     console.log("Request");
-    const { eventId, userId } = req.body;
-    User.findByIdAndUpdate(userId, {
+    var _a = req.body, eventId = _a.eventId, userId = _a.userId;
+    user_model_1.User.findByIdAndUpdate(userId, {
         $push: {
             myEvents: [eventId]
         }
@@ -102,4 +110,4 @@ const saveEvent = (req, res, next) => {
         res.json(user);
     });
 };
-export { register, login, saveEvent };
+exports.saveEvent = saveEvent;
