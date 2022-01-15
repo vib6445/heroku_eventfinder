@@ -45,7 +45,7 @@ var usersSchema = new mongoose_1.Schema({
     },
     suggestedEvents: [{
             suggester: {
-                type: mongoose_1.Schema.Types.String,
+                type: mongoose_1.Schema.Types.ObjectId,
                 required: false
             },
             eventId: {

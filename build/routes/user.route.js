@@ -14,6 +14,9 @@ var userRoute = function () {
     router.post('/register', user_controller_1.register);
     router.post('/login', user_controller_1.login);
     router.post('/saveEvent', user_controller_1.saveEvent);
+    router.post('/getUserById', user_controller_1.getUserById);
+    router.get('/getAllUsers', user_controller_1.getUsers);
+    router.post('/recommendEvent', user_controller_1.recommendEvent);
     // router.post('/login/google', loginGoogle);
     return router;
 };

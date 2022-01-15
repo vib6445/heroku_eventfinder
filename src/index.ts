@@ -6,7 +6,7 @@ import { userRoute } from './routes/user.route';
 
 
 //jsonwebtoken
-const allowedOrigins = ['http://localhost:4214', 'https://interactionprototyping.github.io'];
+const allowedOrigins = ['http://localhost:4210', 'http://localhost:4200', 'https://interactionprototyping.github.io'];
 
 const corsOptions: cors.CorsOptions = {
   origin: allowedOrigins

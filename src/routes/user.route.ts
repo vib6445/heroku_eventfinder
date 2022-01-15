@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, login, saveEvent } from '../controllers/user.controller';
+import { register, login, saveEvent, getUserById, getUsers, recommendEvent } from '../controllers/user.controller';
 import extractJWT from '../middleware/extractjwt';
 
 const userRoute = () => {
@@ -22,6 +22,12 @@ const userRoute = () => {
     router.post('/login', login);
   
     router.post('/saveEvent',  saveEvent);
+
+    router.post('/getUserById', getUserById);
+    
+    router.get('/getAllUsers', getUsers)
+
+    router.post('/recommendEvent', recommendEvent)
     // router.post('/login/google', loginGoogle);
   
     return router;

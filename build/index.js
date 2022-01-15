@@ -44,7 +44,7 @@ var cors_1 = __importDefault(require("cors"));
 var database_connection_1 = require("./database/database-connection");
 var user_route_1 = require("./routes/user.route");
 //jsonwebtoken
-var allowedOrigins = ['http://localhost:4214', 'https://interactionprototyping.github.io'];
+var allowedOrigins = ['http://localhost:4210', 'http://localhost:4200', 'https://interactionprototyping.github.io'];
 var corsOptions = {
     origin: allowedOrigins
 };
